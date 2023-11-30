@@ -6,18 +6,24 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0" *ngIf="currentUser$ | async">
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Link</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-          </li>
         </ul>
-        <form #loginForm = "ngForm"  class="d-flex" (ngSubmit) ="login()"  autocomplete="off">
+
+        <div class="dropdown" *ngIf="currentUser$ | async" dropdown>
+          <a class="dropdown-toggle text-light text-decoration-none" dropdownToggle>Welcome user</a>
+          <div class="dropdown-menu" *dropdownMenu>
+            <a class="dropdown-item">Edit Profile</a>
+            <a class="dropdown-item" (click)="logout()" >Logout</a>
+          </div>
+        </div>
+        
+        <form *ngIf="!(currentUser$ | async)" #loginForm = "ngForm"  class="d-flex" (ngSubmit) ="login()"  autocomplete="off">
     <input 
           name ="UserName"
           [(ngModel)]="model.userName"
