@@ -7,6 +7,8 @@ import { ListsComponent } from './lists/lists.component';
 import { MesssagesComponent } from './messsages/messsages.component';
 import { authGuard } from './_guards/auth.guard';
 import { TestErrorsComponent } from './error/test-error/test-error.component';
+import { NotFoundComponent } from './error/not-found/not-found.component';
+import { ServerErrorComponent } from './error/server-error/server-error.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -22,6 +24,8 @@ const routes: Routes = [
     ]
   },
   {path: 'error', component: TestErrorsComponent},
+  {path: 'not-found', component: NotFoundComponent},
+  {path: 'server-error', component: ServerErrorComponent},
   {path: '**', component: HomeComponent, pathMatch: 'full'},
   
 ];
